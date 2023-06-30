@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Our City Weather</title>
+</head>
+
+<body>
+  <h1>Our City Weather</h1>
+  <div id="weather-container">
+    <p>Loading...</p>
+  </div>
+
+  <h1>Get User's Latitude and Longitude</h1>
+  <button onclick="getLocation()">Get Location</button>
+  <p id="latitude"></p>
+  <p id="longitude"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      var latitudeElement = document.getElementById("latitude");
+      var longitudeElement = document.getElementById("longitude");
+
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+
+      latitudeElement.innerHTML = "Latitude: " + latitude;
+      longitudeElement.innerHTML = "Longitude: " + longitude;
+
+      fetchCity(latitude, longitude);
+    }
+
+    function fetchCity(latitude, longitude) {
+      var apiKey = "2d63c943988f234ee3814ff8c481c42c"; // Replace with your Weatherstack API key
+
+      var cityUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${latitude},${longitude}`;
+
+      fetch(cityUrl)
+        .then(response => response.json())
+        .then(data => {
+          var cityName = data.location.name;
+          if (cityName) {
+            fetchWeather(cityName);
+          } else {
+            alert("City information not available");
+          }
+        })
+        .catch(error => {
+          console.log('Error:', error);
+          alert("Failed to fetch city information");
+        });
+    }
+
+    function fetchWeather(city) {
+      var apiKey = "2d63c943988f234ee3814ff8c481c42c"; // Replace with your Weatherstack API key
+
+      var weatherContainer = document.getElementById("weather-container");
+      weatherContainer.innerHTML = "";
+
+      var weatherUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`;
+
+      fetch(weatherUrl)
+        .then(response => response.json())
+        .then(data => {
+          var weather = data.current.weather_descriptions[0];
+          var temperature = data.current.temperature;
+
+          weatherContainer.innerHTML = `
+            <h2>${city}</h2>
+            <p>Temperature: ${temperature}°C</p>
+            <p>Weather: ${weather}</p>
+          `;
+        })
+        .catch(error => {
+          console.log('Error:', error);
+          weatherContainer.innerHTML = "Failed to fetch weather information";
+        });
+    }
+
+    // Call the fetchWeather function when the page loads
+    window.onload = getLocation;
+  </script>
+</body>
+
+</html>
