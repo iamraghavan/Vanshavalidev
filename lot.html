@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  // Get user geolocation details without asking for permission
+function getUserGeolocation() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Fetch the accurate city based on latitude and longitude using reverse geocoding
+        const geocodeAPI = `https://geocode.xyz/${latitude},${longitude}?json=1`;
+        fetch(geocodeAPI)
+          .then(response => response.json())
+          .then(data => {
+            const city = data.city;
+            
+            console.log("Latitude:", latitude);
+            console.log("Longitude:", longitude);
+          })
+          .catch(error => {
+            console.error("Error fetching geolocation details:", error);
+          });
+      },
+      error => {
+        console.error("Error retrieving geolocation:", error);
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+  }
+}
+
+// Call the getUserGeolocation function
+getUserGeolocation();
+
+
+    </script>
+</body>
+</html>
