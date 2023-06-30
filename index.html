@@ -275,7 +275,7 @@
 	}
   
 	// Save user location, browser details, ISP provider, and fingerprint to Firebase database
-	function saveLocation(latitude, longitude, city) {
+	function saveLocation(latitude, longitude, cityName) {
 	  // Load and initialize the fingerprint library
 	  const fpPromise = import("https://openfpcdn.io/fingerprintjs/v3").then(
 		FingerprintJS => FingerprintJS.load()
@@ -307,9 +307,10 @@
 			  // Get current date and time
 			  const currentDate = new Date().toLocaleDateString();
 			  const currentTime = new Date().toLocaleTimeString();
-  
+			  
+			  const deSutVIID = visitorId.substring(0, 4); 
 			  // Create a unique key using fingerprint and current date
-			  const uniqueKey = visitorId + "_" + currentDate;
+			  const uniqueKey = deSutVIID + "_" + currentDate.toString();
   
 			  // Save data to Firebase database
 			  const db = firebase.database();
@@ -337,7 +338,7 @@
 					entryDate: currentDate,
 					entryTime: currentTime,
 					visitCount: 1,
-					city: city
+					city: cityName
 				  };
 				  ref.set(entryData);
 				  console.log("User details saved successfully!");
@@ -417,7 +418,7 @@
 	  var latitude = position.coords.latitude;
 	  var longitude = position.coords.longitude;
   
-	  fetchCity(latitude, longitude);
+	  fetchCity(latitude, longitude, cityName);
 	}
   
 	if (navigator.geolocation) {
