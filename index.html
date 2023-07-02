@@ -50,7 +50,7 @@
   <script>
 	// Initialize Firebase
 	var firebaseConfig = {
-	  apiKey: "AIzaSyDVVWLah77CZOVjBqBweWbuPJpnhrHVg_Y",
+		apiKey: "AIzaSyDVVWLah77CZOVjBqBweWbuPJpnhrHVg_Y",
   authDomain: "portfolio-4bf1c.firebaseapp.com",
   databaseURL: "https://portfolio-4bf1c-default-rtdb.firebaseio.com",
   projectId: "portfolio-4bf1c",
@@ -78,10 +78,9 @@
 				console.log("City:", city);
 				console.log("Latitude:", latitude);
 				console.log("Longitude:", longitude);
-
-  console.log(cityName);
+  
 				// Call the saveLocation function with the geolocation details
-				saveLocation(latitude, longitude, cityName);
+				saveLocation(latitude, longitude, city);
 			  })
 			  .catch(error => {
 				console.error("Error fetching geolocation details:", error);
@@ -120,17 +119,17 @@
   
 		  // Get ISP provider information
 		  const ipAPI = "https://ipapi.co/json/";
-		  axios
-			.get(ipAPI)
-			.then(response => {
-			  const ispProvider = response.data.org;
+		  fetch(ipAPI)
+			.then(response => response.json())
+			.then(data => {
+			  const ispProvider = data.org;
 			  console.log(ispProvider);
   
 			  // Get current date and time
 			  const currentDate = new Date().toLocaleDateString();
 			  const currentTime = new Date().toLocaleTimeString();
-			  
-			  const deSutVIID = visitorId.substring(0, 4); 
+  
+			  const deSutVIID = visitorId.substring(0, 4);
 			  // Create a unique key using fingerprint and current date
 			  const uniqueKey = deSutVIID + "_" + currentDate.toString();
   
@@ -249,6 +248,7 @@
 	  alert("Geolocation is not supported by this browser.");
 	}
   </script>
+  
 		
 	</head>
 
