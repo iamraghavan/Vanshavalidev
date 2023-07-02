@@ -312,7 +312,7 @@
                            <span> forum</span> </a> 
                         </li>
                        
-                        <li><a href="javascript:void(0)"> 
+                        <li><a href="./family-tree.html"> 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-green-500">
                                 <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
                             </svg>  <span>  Create Family Tree </span></a> 
@@ -384,42 +384,61 @@
                         
                         <div class="bg-white rounded-md lg:shadow-md shadow col-span-2 lg:mx-16">
             
-                            <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                                <div>
-                                    <label for=""> First name</label>
-                                    <input type="text" placeholder="" class="shadow-none with-border">
-                                </div>
-                                <div>
-                                    <label for=""> Last name</label>
-                                    <input type="text" placeholder="" class="shadow-none with-border">
-                                 </div>
-                                 <div class="col-span-2">
-                                    <label for=""> Phone Number</label>
-                                    <input type="text" placeholder="" class="shadow-none with-border">
-                                </div>
-                                 <div class="col-span-2">
-                                     <label for=""> Email</label>
-                                     <input type="text" placeholder="" class="shadow-none with-border">
-                                 </div>
-                                 <div class="col-span-2">
-                                     <label for="about">About me</label>  
-                                     <textarea id="about" name="about" rows="3" class="with-border"></textarea>
-                                 </div> 
-                                 <div class="col-span-2">
-                                     <label for=""> Location</label>
-                                     <input type="text" placeholder="" class="shadow-none with-border">
-                                 </div>
-                                 <div>
-                                    <label for=""> Working at</label>
-                                    <input type="text" placeholder="" class="shadow-none with-border">
-                                 </div> 
-                                
-                            </div> 
-         
-                            <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                                <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                                <button type="button" class="button bg-blue-700"> Save </button>
+                          <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                            <div>
+                                <label for=""> First name</label>
+                                <input type="text" placeholder="" class="shadow-none with-border">
                             </div>
+                            <div>
+                                <label for=""> Last name</label>
+                                <input type="text" placeholder="" class="shadow-none with-border">
+                             </div>
+                             <div class="col-span-2">
+                                 <label for=""> Email</label>
+                                 <input type="text" placeholder="" class="shadow-none with-border">
+                             </div>
+                             <div class="col-span-2">
+                              <label for=""> Contact Number</label>
+                              <input type="text" placeholder="" class="shadow-none with-border">
+                          </div>
+                             <div class="col-span-2">
+                                 <label for="about">About me</label>  
+                                 <textarea id="about" name="about" rows="3" class="with-border"></textarea>
+                             </div> 
+                             
+                             <div>
+                              <label for=""> Pincode</label>
+                              <input type="text" id="zipcode" placeholder="" class="shadow-none with-border">
+                          </div>
+                          <div>
+                              <label for=""> City</label>
+                              <input type="text" id="District" placeholder="" class="shadow-none with-border">
+                           </div>
+                           <div class="col-span-2">
+                            <label for=""> State</label>
+                            <input type="text" id="State" placeholder="" class="shadow-none with-border">
+                        </div>
+
+                             <div>
+                                <label for=""> Working at</label>
+                                <input type="text" placeholder="" class="shadow-none with-border">
+                             </div> 
+                             <div>
+                                <label for=""> Relationship </label>
+                                <select id="relationship" name="relationship" class="shadow-none selectpicker with-border" tabindex="-98">
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>
+                                  <option value="Rather Not Say">Rather Not Say</option>
+                               </select></div>
+                             </div>
+
+                             <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                              <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
+                              <button type="button" class="button bg-blue-700"> Save </button>
+                          </div>
+                        </div>
+         
+
          
                          </div>
         
@@ -436,11 +455,30 @@
     
     
     
-
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
         
     
      
-        
+        <script>
+          $('#zipcode').change(function() {
+            var zipcode = $(this).val();
+            $.ajax({
+              url: 'https://api.postalpincode.in/pincode/' + zipcode,
+              type: 'GET',
+              success: function(response) { 
+                
+                    
+                  let postDistrict = response[0].PostOffice[0].District;
+                  console.log(postDistrict);
+                  $('#District').val(postDistrict);
+      
+                let postState = response[0].PostOffice[0].State;
+                  console.log(postState);
+                  $('#State').val(postState);
+              }
+            });
+          });
+        </script>
      
         
         <!-- For Night mode -->
