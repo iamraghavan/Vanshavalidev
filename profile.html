@@ -400,10 +400,65 @@
                             </div>
     
                         </div>
+
+                        <div style="
+                        align-items: center;
+                        justify-content: center;
+                    " class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
+                      
+   
+                          <!-- button actions -->
+                          <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
+                              
+                          
+                             
+                              
+                            <p uk-toggle="target: #create-post-modal" class="flex items-center px-3 py-2 text-green-500  hover:text-black dark:text-white rounded-md ">
+
+                              <ion-icon name="cloud-upload-outline" class="pr-2 text-xl md hydrated" role="img" aria-label="cloud-upload-outline"></ion-icon>  Edit Profile Picture
+                            </p> 
+                          </div>
+  
+                      </div>
     
                        
     
                     </div>
+
+
+                    <!-- Upload User Image -->
+    <div id="create-post-modal" class="create-post" uk-modal>
+      <div
+          class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+  
+          <div class="text-center py-4 border-b">
+              <h3 class="text-lg font-semibold"> Edit / Upload New Profile </h3>
+              <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 m-1 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+          </div>
+         
+          <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+              <div class="flex bg-gray-50 border border-purple-100 rounded-2xl p-3 shadow-sm items-center">
+                  <div class="lg:block hidden"> Add to your post </div>
+                  <div class="flex flex-1 items-center lg:justify-end justify-center space-x-2">
+                  
+                      <svg class="bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                      
+                  </div>
+              </div>
+          </div>
+          <div class="flex items-center w-full justify-between p-3 border-t">
+  
+              
+  
+              <div class="flex space-x-2">
+                  
+                  <a href="#" class="bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                    Upload </a>    
+              </div>
+
+          </div>
+      </div>
+  </div>
 
                     <div class="w-full space-y-6">
                         
