@@ -415,7 +415,7 @@
                 <li><a href="#" class="lg:px-2"> <i class="bi bi-diagram-3 mr-1"></i> Create Chart </a></li>
                 <li><a href="#" class="lg:px-2"> <i class="bi bi-magic mr-1"></i> Manage Chart </a></li>
                 <li><a href="#" class="lg:px-2"> <i class="bi bi-trash mr-1"></i> Delete </a></li>
-                <li><a href="#" class="lg:px-2"> <i class="bi bi-share mr-1"></i> Invite </a></li>
+                <li uk-toggle="target: #search-username"><a class="lg:px-2"> <i class="bi bi-share mr-1"></i> Invite </a></li>
               </ul>
             </nav>
           </div>
@@ -445,6 +445,33 @@
     </div>
 
   </div>
+
+
+
+
+  <!-- Model To Search user -->
+
+  <div id="search-username" class="create-post is-story" uk-modal>
+    <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+
+        <div class="text-center py-3 border-b">
+            <h3 class="text-lg font-semibold"> Search </h3>
+            <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+        </div>
+        <div class="flex flex-1 items-start space-x-4 p-5">
+          
+            <div class="flex-1 pt-2">
+                <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5"
+                    placeholder="Search ! Your Family Member Email / Username "></textarea>
+            </div>
+
+        </div>
+      
+       
+    </div>
+</div>
+
 
 
 
