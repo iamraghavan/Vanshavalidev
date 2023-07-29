@@ -351,6 +351,7 @@
             <svg fill="currentColor" class="text-red-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
             <span> Invite Notification </span></a>
         </li>
+
         </ul>
 
 
@@ -401,45 +402,52 @@
     <div class="main_content">
       <div class="mcontainer">
 
-        <div class="flex justify-between items-center relative md:mb-4 mb-3">
-          <div class="flex-1">
-            <div class="bg-green-500 border p-4 relative rounded-md uk-alert" uk-alert="">
-              <button
-                class="uk-alert-close absolute bg-gray-100 bg-opacity-20 m-5 p-0.5 pb-0 right-0 rounded text-gray-200 text-xl top-0">
-                <i class="icon-feather-x"></i>
-              </button>
-              <h3 class="text-lg font-semibold text-white">Notice</h3>
-              <p class="text-white text-opacity-75">If anything went wrong, please delete and create a
-                new!</p>
-            </div>
+      
 
-            <nav class="responsive-nav md:m-0 -mx-4 style-3">
-              <ul>
 
-                <li><a href="#" class="lg:px-2"> <i class="bi bi-house mr-1"></i> Home </a></li>
-                <li><a href="#" class="lg:px-2"> <i class="bi bi-diagram-3 mr-1"></i> Create Chart </a></li>
-                <li><a href="#" class="lg:px-2"> <i class="bi bi-magic mr-1"></i> Manage Chart </a></li>
-                <li><a href="#" class="lg:px-2"> <i class="bi bi-trash mr-1"></i> Delete </a></li>
-                <li uk-toggle="target: #search-username"><a class="lg:px-2"> <i class="bi bi-share mr-1"></i> Invite </a></li>
-              </ul>
-            </nav>
+
+        <div class="m-auto">  
+ 
+
+          <table class="min-w-full border bg-white">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-left">Username</th>
+                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-left">Name</th>
+                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-left">Date of Invite</th>
+                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-left">Status</th>
+                <th class="px-6 py-3 border-b border-gray-200 font-semibold text-left">Revoke the Invite</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">iamraghavna</td>
+                <td class="px-6 py-4 whitespace-nowrap">Pradeep Ragahvan</td>
+                <td class="px-6 py-4 whitespace-nowrap">2023-07-29</td>
+                <td class="px-6 py-4 whitespace-nowrap text-green-500">Accepted</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Revoke</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">sampleuser</td>
+                <td class="px-6 py-4 whitespace-nowrap">Sample User</td>
+                <td class="px-6 py-4 whitespace-nowrap">2023-06-09</td>
+                <td class="px-6 py-4 whitespace-nowrap text-red-500">rejected</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Revoke</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <!-- form footer -->
+          <div class="flex justify-center border-gray-100 py-8">
+            <a href="#" class="is_link">Refresh  <i class="bi bi-arrow-clockwise side-icon"></i> </a>
+            
           </div>
-
-        </div>
-
-        <div class="messages-container">
-          <div class="messages-container-inner">
-
-
-            <div style="width:100%; height:700px;" id="tree"></div>
-
-
-          </div>
-        </div>
-
-
-
-
+       
+      </div>
 
 
 
@@ -455,58 +463,9 @@
 
 
 
-  <!-- Model To Search user -->
-
-  <div id="search-username" class="create-post is-story" uk-modal>
-    <div
-        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
-
-        <div class="text-center py-3 border-b">
-            <h3 class="text-lg font-semibold"> Search </h3>
-            <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
-        </div>
-        <div class="flex flex-1 items-start space-x-4 p-5">
-          
-            <div class="flex-1 pt-2">
-                <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5"
-                    placeholder="Search ! Your Family Member Email / Username "></textarea>
-            </div>
-
-        </div>
-      
-       
-    </div>
-</div>
 
 
 
-
-
-
-
-
-
-  <script src="https://cdn.jsdelivr.net/gh/iamraghavan/Vanshavali@main/familytree.js"></script>
-
-  <script>
-
-    const userName = "Tamil Selvan";
-    const sex = "male"
-
-    var family = new FamilyTree(document.getElementById("tree"), {
-      nodeTreeMenu: true,
-      enableSearch: false,
-      nodeBinding: {
-        field_0: "name"
-      },
-      nodes: [
-        { id: 1, pids: [0], name: `${userName}`, gender: `${sex}` }
-
-
-
-      ]
-    });
-  </script>
 
   <!-- For Night mode -->
   <script>
